@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  php:
+    image: php:7.4-fpm-alpine
+    container_name: php
+    restart: unless-stopped
+    volumes:
+      - ./html/:/var/www/html
+    expose:
+      - "9000"
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: unless-stopped
+    volumes:
+      - ./html/:/var/www/html
+      - ./nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    ports:
+      - 9100:80
+
+  db:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: unless-stopped
+    volumes:
+      - ./mariadb/data/:/var/lib/mysql/
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=devops_db
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=123456
+
+  phpmyadmin:
+    image: 'phpmyadmin/phpmyadmin:latest'
+    container_name: phpmyadmin
+    restart: always
+    ports:
+    - 9200:80
+    environment:
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=123456
+      - PMA_HOST=db
+
+networks:
+  default:
+    name: web_network
+    external: true
