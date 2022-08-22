@@ -24,9 +24,9 @@ pipeline{
         stage('Build docker image') {
             steps {
                 script {
+                    docker.withRegistry('', 'dockerhub') {
                     sh "cd php/"
                     sh "ll"
-                    docker.withRegistry('', 'dockerhub') {
                     //sh "docker build -t chakorn/php"
                         //def slackImage = docker.build("${env.image}:${BUILD_NUMBER}")
                         //slackImage.push()
