@@ -25,7 +25,7 @@ pipeline{
                     docker.withRegistry('', 'dockerhub') {
                     sh "ls -a"
                     sh "docker build -t chakorn/php -f php/Dockerfile ."
-                    sh "docker push chakorn/php:v1"
+                    sh "docker push chakorn/php:latest"
                         //def slackImage = docker.build("${env.image}:${BUILD_NUMBER}")
                         //slackImage.push()
                         //slackImage.push('latest')
