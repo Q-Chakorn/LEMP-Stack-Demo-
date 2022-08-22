@@ -2,7 +2,8 @@ version: '3'
 
 services:
   php:
-    image: php:7.4-fpm-alpine
+    #image: php:7.4-fpm-alpine
+    build: php/
     container_name: php
     restart: unless-stopped
     volumes:
