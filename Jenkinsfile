@@ -27,7 +27,7 @@ pipeline{
                     sh "docker build -t chakorn/php -f php/Dockerfile ."
                         //def slackImage = docker.build("${env.image}:${BUILD_NUMBER}")
                         //slackImage.push()
-                        //slackImage.push('latest')
+                        slackImage.push('latest')
                     }
                 }
             }
