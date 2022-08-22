@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     environment {
-        image = "chakorn/nodejs"
+        image = "chakorn/php"
         registry = "docker.io"
     }
 
@@ -20,4 +20,25 @@ pipeline{
             }
         }
     }
+
+        stage('Build docker image') {
+            steps {
+                script {
+                    sh "cd php/"
+                    sh "ll"
+                    docker.withRegistry('', 'dockerhub') {
+                    //sh "docker build -t chakorn/php"
+                        //def slackImage = docker.build("${env.image}:${BUILD_NUMBER}")
+                        //slackImage.push()
+                        //slackImage.push('latest')
+                    }
+                }
+            }
+        }
+        //stage('Deployment'){
+            //steps {
+                //sh "docker-compose up -d"
+            //}
+            
+        //}
 }
