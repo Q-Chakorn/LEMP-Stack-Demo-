@@ -23,7 +23,7 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
     ports:
       - 4000:4000
-      - 4100:8080
+      - 80:4100
 
   db:
     image: mariadb:latest
@@ -43,7 +43,7 @@ services:
     restart: always
     ports:
       - 6000:6000
-      - 6100:8080
+      - 80:6100
     environment:
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=123456
