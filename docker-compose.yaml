@@ -23,7 +23,7 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
     ports:
       - "9200:9200"
-      - "9201:9201"
+      - "9201:8080"
 
   db:
     image: mariadb:latest
