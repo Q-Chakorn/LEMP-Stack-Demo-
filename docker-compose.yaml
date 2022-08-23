@@ -9,7 +9,7 @@ services:
     volumes:
       - ./html/:/var/www/html
     expose:
-      - 9100
+      - 2000
     depends_on:
       - db
 
@@ -22,8 +22,8 @@ services:
       - ./nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf:ro
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
     ports:
-      - 9200:9200
-      - 9201:80
+      - 4000:4000
+      - 4100:8080
 
   db:
     image: mariadb:latest
@@ -42,8 +42,8 @@ services:
     container_name: phpmyadmin
     restart: always
     ports:
-      - 9300:9300
-      - 9301:80
+      - 6000:6000
+      - 6100:8080
     environment:
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=123456
