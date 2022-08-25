@@ -22,7 +22,7 @@ services:
       - ./nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf:ro
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
     ports:
-      - 9100:9100
+      - 9100:80
 
   db:
     image: mariadb:latest
@@ -41,7 +41,7 @@ services:
     container_name: phpmyadmin
     restart: always
     ports:
-      - 9200:9200
+      - 9200:80
     environment:
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=123456
